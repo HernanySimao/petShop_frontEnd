@@ -1,9 +1,14 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Pets />
+  </div>
 </template>
 
 <script>
+import Pets from "~/components/Pets/index.vue";
+
 export default {
-  name: 'IndexPage'
-}
+  name: "IndexPage",
+  components: { Pets },
+};
 </script>
