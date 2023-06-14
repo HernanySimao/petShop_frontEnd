@@ -1,9 +1,100 @@
 <template>
-  <h1>HOME</h1>
+  <div>
+    <Navbar></Navbar>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-12 text-color">
+          <h1>
+            {{ data?.title }}
+          </h1>
+          <p v-html="data?.description"></p>
+          <div>
+            <form action="">
+              <input
+                class="mt-4 p-2 w-50 p-3"
+                placeholder="O que você está procurando?"
+                type="text"
+                v-model="search"
+              />
+              <button class="btn btn-orage">Pesquisar</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mt-2">
+          <div class="d-flex justify-content-center">
+            <img class="image-responsive" src="image/pet.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: {
+        title:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus id",
+        description:
+          "Lorem ipsum dolor sit amet consectet dolor sit amet consectetdolor sit amet consectetdolor sit amet consectetdolor sit amet consectetdolor sit amet consectet",
+      },
+
+      search: "",
+    };
+  },
+};
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.text-color {
+  color: #000659;
+}
+h1 {
+  font-weight: 500;
+}
+input {
+  border-radius: 20px;
+  box-shadow: 0 0 10px 4px rgba($color: #000000, $alpha: 0.1);
+  border: none;
+  &::placeholder {
+    padding: 10px 10px;
+    color: gray;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.image-responsive {
+  width: 250px;
+  border-radius: 40px;
+  box-shadow: 0 0 10px 4px rgba($color: #000000, $alpha: 0.1);
+  &:hover {
+    filter: blur(0.3px);
+  }
+}
+
+.btn-orage {
+  border-radius: 20px;
+  background: #ff5b2e;
+  color: #fff;
+  padding: 10px 30px 10px 30px;
+  transition: 0.2s all;
+  &:hover {
+    background: #a73b1d;
+  }
+}
+
+@media (max-width: 575px) {
+  .image-responsive {
+    width: 400px;
+    border-radius: 40px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px 4px rgba($color: #000000, $alpha: 0.1);
+    &:hover {
+      filter: blur(0.3px);
+    }
+  }
+}
+</style>
