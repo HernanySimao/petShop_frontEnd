@@ -1,5 +1,3 @@
-# petshop_frontEnd
-
 ## Build Setup
 
 ```bash
