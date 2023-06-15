@@ -7,7 +7,7 @@
           <h1>
             {{ data?.title }}
           </h1>
-          <p v-html="data?.description"></p>
+          <div v-html="data?.description"></div>
           <div>
             <form action="">
               <input
@@ -22,11 +22,17 @@
         </div>
         <div class="col-12 col-md-6 mt-2">
           <div class="d-flex justify-content-center">
-            <img class="image-responsive" src="image/pet.jpg" alt="" />
+            <img
+              class="image-responsive d-none d-md-block"
+              src="image/pet.jpg"
+              alt=""
+            />
           </div>
         </div>
       </div>
+      <PetsCards data="data"></PetsCards>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -67,7 +73,7 @@ input {
   }
 }
 .image-responsive {
-  width: 250px;
+  width: 300px;
   border-radius: 40px;
   box-shadow: 0 0 10px 4px rgba($color: #000000, $alpha: 0.1);
   &:hover {
@@ -83,18 +89,6 @@ input {
   transition: 0.2s all;
   &:hover {
     background: #a73b1d;
-  }
-}
-
-@media (max-width: 575px) {
-  .image-responsive {
-    width: 400px;
-    border-radius: 40px;
-    margin-top: 20px;
-    box-shadow: 0 0 10px 4px rgba($color: #000000, $alpha: 0.1);
-    &:hover {
-      filter: blur(0.3px);
-    }
   }
 }
 </style>

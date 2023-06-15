@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav class="navbar navbar-expand-lg bg-inline mb-5">
-      <div class="container-fluid">
+      <div class="container-fluid mb-2">
         <a class="navbar-brand mdi mdi-paw" href="#"></a>
         <button
           class="navbar-toggler"
@@ -12,17 +12,17 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="mdi mdi-menu-down-outline"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <nuxt-link to="/" class="nav-link" aria-current="page" href="#"
-                >Home</nuxt-link
+                >Inicio</nuxt-link
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Categoria</a>
+              <nuxt-link to="/category" class="nav-link">Categoria</nuxt-link>
             </li>
             <!-- <li class="nav-item dropdown">
               <a
