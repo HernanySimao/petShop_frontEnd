@@ -9,7 +9,7 @@
               <img class="image-dogs" src="image/dog.png" alt="" />
               <div class="text-center d-flex justify-content-between">
                 <small>Raça: YYY</small>
-                <small>Peso: YYY</small>
+                <small>Peso: YYY </small>
               </div>
             </div>
           </div>

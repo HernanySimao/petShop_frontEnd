@@ -21,9 +21,7 @@
                 >Inicio</nuxt-link
               >
             </li>
-            <li class="nav-item">
-              <nuxt-link to="/category" class="nav-link">Categoria</nuxt-link>
-            </li>
+
             <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -44,9 +42,10 @@
               </ul>
             </li> -->
           </ul>
-          <div class="d-flex">
-            <span class="mdi mdi-account"></span>
-            <span class="mdi mdi-logout"></span>
+          <div>
+            <nuxt-link to="/Auth/login" class="nav-link mdi mdi-account"
+              >Entrar</nuxt-link
+            >
           </div>
         </div>
       </div>
@@ -67,6 +66,10 @@ export default {};
 .nav-link,
 span {
   color: #000659;
+}
+
+.mdi-account {
+  width: 100%;
 }
 
 li {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PetsFindCategory></PetsFindCategory>
+    <AuthSignUp></AuthSignUp>
   </div>
 </template>
 
