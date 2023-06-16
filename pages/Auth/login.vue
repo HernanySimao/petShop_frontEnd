@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AuthLogin />
+    <AuthLogin data="login" />
   </div>
 </template>
 

@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div
-        v-for="(item, i) in data"
-        :key="i"
-        class="col-12 col-md-3 mt-4 p-md-5"
-      >
+      <div v-for="(item, i) in data" :key="i" class="col-12 col-md-3 mt-4">
         <div class="d-flex justify-content-center">
           <div class="card bg-orange mt-2 p-2">
             <div class="card-body">
@@ -14,8 +10,8 @@
               </h1>
               <img class="image-dogs" src="image/dog.png" alt="" />
               <div class="text-center d-flex justify-content-between">
-                <small>Raça: {{ item?.raca }} </small>
-                <small>Peso: {{ item?.peso }} </small>
+                <h6>Raça: {{ item?.raca }}</h6>
+                <h6>Peso: {{ item?.peso }}</h6>
               </div>
             </div>
           </div>
