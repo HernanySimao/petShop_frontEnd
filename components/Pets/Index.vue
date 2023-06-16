@@ -11,12 +11,17 @@
           <div>
             <form action="">
               <input
-                class="mt-4 p-2 w-50 p-3"
+                class="mt-4 p-2 w-100 p-3"
                 placeholder="O que você está procurando?"
                 type="text"
                 v-model="search"
+                @input="findSearch()"
               />
-              <button class="btn btn-orage">Pesquisar</button>
+              <div class="d-flex p-1 justify-content-between">
+                <p v-show="errorSearch" class="mt-1 text-muted">
+                  Não encontramos nada, volte a pesquisar
+                </p>
+              </div>
             </form>
           </div>
         </div>
@@ -30,7 +35,7 @@
           </div>
         </div>
       </div>
-      <PetsCards data="data"></PetsCards>
+      <PetsCards :data="listCards"></PetsCards>
     </div>
     <Footer></Footer>
   </div>
@@ -40,15 +45,43 @@
 export default {
   data() {
     return {
+      listCards: [],
       data: {
         title:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus id",
+          " Bem-vindo ao Petshop Online - Seu destino completo para cuidados de animais de estimação!",
         description:
-          "Lorem ipsum dolor sit amet consectet dolor sit amet consectetdolor sit amet consectetdolor sit amet consectetdolor sit amet consectetdolor sit amet consectet",
+          "Cuidados completos para seu pet: Petshop Online, entrega garantida!",
       },
-
       search: "",
+      errorSearch: false,
     };
+  },
+
+  mounted() {
+    this.$axios
+      .get("/pets/findAll")
+      .then(({ data }) => {
+        this.listCards = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  methods: {
+    async findSearch() {
+      await this.$axios
+        .get(`/pets/findByName/${this.search}`)
+        .then(({ data }) => {
+          if (!data.length) {
+            this.errorSearch = true;
+          } else {
+            this.listCards = data;
+            this.errorSearch = false;
+          }
+        })
+        .catch((e) => {});
+    },
   },
 };
 </script>
@@ -72,6 +105,7 @@ input {
     outline: none;
   }
 }
+
 .image-responsive {
   width: 300px;
   border-radius: 40px;

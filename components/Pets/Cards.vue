@@ -1,15 +1,21 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="i in 4" :key="i" class="col-12 col-md-3 mt-4 p-md-5">
+      <div
+        v-for="(item, i) in data"
+        :key="i"
+        class="col-12 col-md-3 mt-4 p-md-5"
+      >
         <div class="d-flex justify-content-center">
           <div class="card bg-orange mt-2 p-2">
             <div class="card-body">
-              <h1 class="card-title text-muted text-center">Dog</h1>
+              <h1 class="card-title text-muted text-center">
+                {{ item?.nome }}
+              </h1>
               <img class="image-dogs" src="image/dog.png" alt="" />
               <div class="text-center d-flex justify-content-between">
-                <small>Raça: YYY</small>
-                <small>Peso: YYY </small>
+                <small>Raça: {{ item?.raca }} </small>
+                <small>Peso: {{ item?.peso }} </small>
               </div>
             </div>
           </div>
