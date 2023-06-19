@@ -14,7 +14,7 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
-                <form>
+                <form @submit.prevent="createAccont()">
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
@@ -24,6 +24,7 @@
                           class="form-control p-3"
                           required
                           placeholder="O seu nome"
+                          v-model="nome"
                         />
                       </div>
                     </div>
@@ -36,6 +37,7 @@
                       class="form-control p-3"
                       required
                       placeholder="O seu email"
+                      v-model="email"
                     />
                   </div>
 
@@ -46,6 +48,7 @@
                       class="form-control p-3"
                       required
                       placeholder="A sua senha"
+                      v-model="senha"
                     />
                   </div>
 
@@ -69,7 +72,46 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      nome: "",
+      email: "",
+      senha: "",
+    };
+  },
+
+  methods: {
+    Toast() {
+      return this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+    },
+    async createAccont() {
+      await this.$axios
+        .post("users/createUser", {
+          nome: this.nome,
+          email: this.email,
+          senha: this.senha,
+        })
+        .then((data) => {
+          console.log(data);
+          this.$router.push("/Auth/login");
+          this.Toast().fire({
+            icon: "success",
+            title: "Conta criada, entre com as suas credencias",
+          });
+        })
+        .then((data) => {
+          console.log(data);
+        });
+    },
   },
 };
 </script>
