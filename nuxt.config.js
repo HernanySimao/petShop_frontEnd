@@ -47,4 +47,7 @@ export default {
   build: {
     distDir: "dist",
   },
+  generate: {
+    dir: "dist",
+  },
 };
