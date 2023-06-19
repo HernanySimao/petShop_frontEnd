@@ -48,9 +48,9 @@ export default {
       listCards: [],
       data: {
         title:
-          " Bem-vindo ao Petshop Online - Seu destino completo para cuidados de animais de estimação!",
+          " Bem-vindo ao Petshop Online - Seu destino completo para cuidados de animais de estimação! ",
         description:
-          "Cuidados completos para seu pet: Petshop Online, entrega garantida!",
+          "Cuidados completos para seu pet: Petshop Online, entrega garantida! ",
       },
       search: "",
       errorSearch: false,
