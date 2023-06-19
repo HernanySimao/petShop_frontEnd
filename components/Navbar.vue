@@ -21,6 +21,16 @@
                 >Inicio</nuxt-link
               >
             </li>
+            <li>
+              <nuxt-link
+                v-if="token"
+                to="/CreatePets"
+                class="nav-link mdi mdi-paw"
+                aria-current="page"
+                href="#"
+                >Adicionar</nuxt-link
+              >
+            </li>
 
             <!-- <li class="nav-item dropdown">
               <a
@@ -43,9 +53,15 @@
             </li> -->
           </ul>
           <div>
-            <nuxt-link to="/Auth/login" class="nav-link mdi mdi-account"
-              >Entrar</nuxt-link
-            >
+            <nuxt-link
+              v-if="!token"
+              to="/Auth/login"
+              class="nav-link mdi mdi-account"
+              >Entrar
+            </nuxt-link>
+            <button v-else @click="logout()" class="nav-link mdi mdi-logout">
+              Sair
+            </button>
           </div>
         </div>
       </div>
@@ -54,7 +70,43 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      token: false,
+    };
+  },
+
+  mounted() {
+    if (localStorage.getItem("token")) {
+      this.token = true;
+    }
+  },
+
+  methods: {
+    Toast() {
+      return this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+    },
+    logout() {
+      localStorage.clear();
+      this.$router.push("/Auth/login");
+      this.Toast().fire({
+        icon: "success",
+        title: "Sessão terminada",
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -73,7 +125,6 @@ span {
 }
 
 li {
-  text-transform: uppercase;
   color: #000659;
   font-weight: 600;
 }

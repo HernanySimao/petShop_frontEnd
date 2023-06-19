@@ -51,10 +51,18 @@
                   </div>
 
                   <button
+                    :disabled="loadingReq"
                     type="submit"
                     class="btn btn-orage mb-4 w-100 text-uppercase"
                   >
                     Entrar
+                    <div
+                      v-show="loadingReq"
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                    >
+                      <span class="sr-only"></span>
+                    </div>
                   </button>
                   <nuxt-link to="/auth/signUp"
                     >Você não tem uma conta?</nuxt-link
@@ -75,18 +83,43 @@ export default {
     return {
       email: "",
       senha: "",
+      loadingReq: false,
     };
   },
 
   methods: {
+    Toast() {
+      return this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+    },
     async login() {
       try {
         const response = await this.$axios.post("/users/auth/login", {
           email: this.email,
           senha: this.senha,
         });
-        console.log(response.data);
-      } catch (error) {}
+        this.loadingReq = true;
+        localStorage.setItem("token", response.data.token);
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+        if (error.response.status === 401) {
+          this.loadingReq = false;
+          this.Toast().fire({
+            icon: "error",
+            title: "Credenciais inválidas",
+          });
+        }
+      }
     },
   },
 };
